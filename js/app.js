@@ -15,36 +15,41 @@ var imgCaller = function () {
   }
 }
 
-
-
 getRandomIndex = function() {
-  return Math.floor((Math.random() * (14 - 1) + 1));
+  return Math.floor(Math.random() * (pictureName.length - 1));
 }
-
+imgCaller();
 var tracker = function () {
-    imgCaller();
     getRandomIndex();
     var firstImage = document.getElementById('img1');
-    for (var i = 0; i < pictureName.length; i += 1){
-      firstImage.src = imgStorage[getRandomIndex()].path;
+    firstImage.src = imgStorage[getRandomIndex()].path;
 
-    };
     getRandomIndex()
     var secondImage = document.getElementById('img2');
-    for (var i = 0; i < pictureName.length; i += 1){
-      secondImage.src = imgStorage[getRandomIndex()].path;
-    };
+    secondImage.src = imgStorage[getRandomIndex()].path;
+
     getRandomIndex()
     var thirdImage = document.getElementById('img3');
-    for (var i = 0; i < pictureName.length; i += 1){
-      thirdImage.src = imgStorage[getRandomIndex()].path;
-    };
+    thirdImage.src = imgStorage[getRandomIndex()].path;
+
+    var img1Btn = document.getElementById('img1');
+    img1Btn.addEventListener('click', function(event) {
+      event.preventDefault();
+      this.count ++;
+      tracker();
+    });
+
+    var img2Btn = document.getElementById('img2');
+    img2Btn.addEventListener('click', function(event) {
+      event.preventDefault();
+      tracker();
+    });
+
+    var img3Btn = document.getElementById('img3');
+    img3Btn.addEventListener('click', function(event) {
+      event.preventDefault();
+      tracker();
+    });
 }
+
 tracker();
-
-var btnEl = document.getElementById('imgClick');
-
-btnEl.addEventListener('click', function(event) {
-  event.preventDefault();
-  tracker();
-});
