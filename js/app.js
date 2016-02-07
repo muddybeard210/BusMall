@@ -24,6 +24,7 @@ var tracker = function () {
     var firstImage = document.getElementById('img1');
     firstImage.src = imgStorage[getRandomIndex()].path;
 
+
     getRandomIndex()
     var secondImage = document.getElementById('img2');
     secondImage.src = imgStorage[getRandomIndex()].path;
@@ -31,25 +32,24 @@ var tracker = function () {
     getRandomIndex()
     var thirdImage = document.getElementById('img3');
     thirdImage.src = imgStorage[getRandomIndex()].path;
-
-    var img1Btn = document.getElementById('img1');
-    img1Btn.addEventListener('click', function(event) {
-      event.preventDefault();
-      this.count ++;
-      tracker();
-    });
-
-    var img2Btn = document.getElementById('img2');
-    img2Btn.addEventListener('click', function(event) {
-      event.preventDefault();
-      tracker();
-    });
-
-    var img3Btn = document.getElementById('img3');
-    img3Btn.addEventListener('click', function(event) {
-      event.preventDefault();
-      tracker();
-    });
 }
 
 tracker();
+
+var img1Btn = document.getElementById('img1');
+img1Btn.addEventListener('click', function(event) {
+  event.preventDefault();
+  tracker();
+});
+
+var img2Btn = document.getElementById('img2');
+img2Btn.addEventListener('click', function(event) {
+  event.preventDefault();
+  tracker();
+});
+
+var img3Btn = document.getElementById('img3');
+img3Btn.addEventListener('click', function(event) {
+  event.preventDefault();
+  tracker();
+});
