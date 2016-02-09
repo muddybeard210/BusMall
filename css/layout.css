@@ -1,5 +1,5 @@
-* {
-  border: 1px dotted blue;
+/** {
+  border: 1px dotted blue;*/
 }
 li {
   width: 300px;
@@ -12,3 +12,16 @@ body {
 h1 {
   text-align: center;
 }
+canvas {
+  margin-left: 25%;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+/*.normalChart {
+  visibility: visible;
+  height: 400px;
+  width: 800px
+}*/
