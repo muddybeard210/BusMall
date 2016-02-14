@@ -1,3 +1,5 @@
+var storedNumbers = [];
+var data = null;
 var imgStorage= [];
 var pictureName = ['bag', 'banana', 'boots', 'cthulhu', 'dragon', 'pen', 'shark', 'sweep', 'unicorn', 'water_can', 'wine_glass', 'chair', 'scissors', 'usb'];
 var totalClicks = 0;
@@ -13,12 +15,13 @@ var imgCaller = function () {
   for (var i = 0; i < pictureName.length; i += 1){
     new ImgGrab(pictureName[i], 'imgs/' + pictureName[i] + '.jpg');
   }
+  // localStorage.setItem('storedNumbers', JSON.stringify(imgStorage));
 }
-var tableLabels = function() {
-    for (i = 0; i < pictureName.length; i += 1) {
-    pictureName[i].pic + ', '
-  }
-}
+// var tableLabels = function() {
+//     for (i = 0; i < pictureName.length; i += 1) {
+//     pictureName[i].pic + ', '
+//   }
+// }
 
 getRandomIndex = function() {
   return Math.floor(Math.random() * (pictureName.length));
@@ -45,9 +48,7 @@ var tracker = function () {
       tracker();
     }
 }
-var chartDestroyer = function() {
 
-}
 var hideChart = document.getElementById('myChart')
 var resetBtn = document.getElementById('resetBtn');
 resetBtn.addEventListener('click', function(){
@@ -56,12 +57,25 @@ resetBtn.addEventListener('click', function(){
   hideChart.className = 'hidden'
  });
 
+// var storage = function() {
+//   for (var i = 0; i < pictureName.length; i += 1) {
+//      storedNumbers.push(JSON.stringify(imgStorage[i]));
+//
+//   }
+//
+// }
+
 var btnFunc = function() {
   var eventRemover = function() {
     img1Btn.removeEventListener('click', img1btnFunc);
     img2Btn.removeEventListener('click', img2btnFunc);
     img3Btn.removeEventListener('click', img3BtnFunc);
   }
+  // if (localStorage.storedNumbers) {
+  //   console.log('yes')
+  // } else {
+  //   console.log('no')
+  // }
 
   var img1btnFunc = function() {
     imgStorage[index1].count ++;
@@ -71,6 +85,8 @@ var btnFunc = function() {
     } else {
       eventRemover();
       charty();
+      localStorage.setItem('storedNumbers', JSON.stringify(imgStorage));
+
       myChart.className=''
     }
   }
@@ -83,6 +99,8 @@ var btnFunc = function() {
     } else {
       eventRemover();
       charty();
+      localStorage.setItem('storedNumbers', JSON.stringify(imgStorage));
+
       myChart.className=''
     }
   }
@@ -95,6 +113,8 @@ var btnFunc = function() {
     } else {
       eventRemover();
       charty();
+      localStorage.setItem('storedNumbers', JSON.stringify(imgStorage));
+
       myChart.className=''
     }
   }
@@ -133,4 +153,15 @@ var charty = function() {
 
 imgCaller();
 tracker();
-btnFunc();
+
+if (localStorage.storedNumbers) {
+  console.log('yes')
+  console.log(localStorage.storedNumbers);
+  data = localStorage.getItem('storedNumbers');
+  var newData = JSON.parse(data);
+  imgStorage = newData;   
+  btnFunc();
+} else {
+  console.log('no')
+  btnFunc();
+}
